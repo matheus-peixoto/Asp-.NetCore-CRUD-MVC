@@ -1,0 +1,39 @@
+﻿@model SellerFormViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<h2 class="mg-left-10px">@ViewData["Title"]</h2>
+<form class="form" method="post" style="padding: 20px;">
+    <input type="hidden" asp-for="Seller.Id" />
+    <div class="my-col-10">
+        <label asp-for="Seller.Name" class="block"></label>
+        <input asp-for="Seller.Name" />
+        <span class="color-red" asp-validation-for="Seller.Name"></span>
+    </div>
+    <div class="">
+        <label class="block" asp-for="Seller.Email"></label>
+        <input asp-for="Seller.Email" />
+        <span class="color-red" asp-validation-for="Seller.Email"></span>
+    </div>
+    <div class="">
+        <label class="block" asp-for="Seller.BaseSalary">Base salary</label>
+        <input asp-for="Seller.BaseSalary" />
+        <span class="color-red" asp-validation-for="Seller.BaseSalary"></span>
+    </div>
+    <div class="">
+        <label class="block" asp-for="Seller.DepartmentId">Departamento</label>
+        <select asp-for="Seller.DepartmentId" asp-items=@(new SelectList(Model.Departments, "Id", "Name"))>
+        </select>
+    </div>
+    <div class="form-row">
+        <div class="my-col-5 float-left mg-right-60px">
+            <label class="block" asp-for="Seller.BirthDate"></label>
+            <input asp-for="Seller.BirthDate" />
+            <span class="color-red" asp-validation-for="Seller.BirthDate"></span>
+        </div>
+        <button style="margin: 36px 0 0; position:absolute; right: 0px;" class="btn btn-md bg-color-green color-white" type="submit">Edit</button>
+    </div>
+</form>
+
+<a class="btn btn-md bg-color-blue color-white" asp-action="Index">Go back</a>

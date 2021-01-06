@@ -1,0 +1,33 @@
+﻿@model Department
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<div class="mg-left-10px">
+    <h2>@ViewData["Title"]</h2>
+    <h3 class="mar-top-50px">Ares you sure you want to delete this?</h3>
+
+    <dl>
+        <div class="dl-horizontal-data">
+            <dt>@Html.DisplayNameFor(dp => dp.Id)</dt>
+            <dd>@Html.DisplayFor(dp => dp.Id)</dd>
+        </div>
+        <div class="dl-horizontal-data">
+            <dt>@Html.DisplayNameFor(dp => dp.Name)</dt>
+            <dd>@Html.DisplayFor(dp => dp.Name)</dd>
+        </div>
+        <div class="dl-horizontal-data">
+            <dt>Sellers</dt>
+            <dd>@Html.DisplayFor(dp => dp.Sellers.Count)</dd>
+        </div>
+    </dl>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button class="btn btn-md bg-color-red color-white" type="submit">Delete</button>
+</form>
+
+<a class="btn btn-md bg-color-blue color-white mg-top-15px" asp-action="Index">Go Back</a>

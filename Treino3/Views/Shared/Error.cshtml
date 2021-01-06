@@ -1,0 +1,18 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<h1>Error.</h1>
+<h2>An error occurred.</h2>
+
+@if (Model.ShowRequestId)
+{
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6 mar-top-50px font-size-20px">
+                <code>@Model.Message</code>
+            </div>
+        </div>
+    </div>
+}

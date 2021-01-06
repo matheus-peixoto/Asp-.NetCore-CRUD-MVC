@@ -1,0 +1,59 @@
+﻿@model Department
+
+@{
+    ViewData["Title"] = "Details";
+    Seller seller = new Seller();
+}
+
+<h2 class="mg-left-10px">@ViewData["Title"]</h2>
+<dl class="mg-left-10px">
+    <div class="dl-horizontal-data">
+        <dt>@Html.DisplayNameFor(ml => ml.Id)</dt>
+        <dd>@Html.DisplayFor(ml => ml.Id)</dd>
+    </div>
+    <div class="dl-horizontal-data">
+        <dt>@Html.DisplayNameFor(ml => ml.Name)</dt>
+        <dd>@Html.DisplayFor(ml => ml.Name)</dd>
+    </div>
+    <div class="dl-horizontal-data">
+        <dt>Sellers</dt>
+        <dd>@Html.DisplayFor(ml => ml.Sellers.Count)</dd>
+    </div>
+</dl>
+
+<h3 class="mg-left-10px">Sellers of @Model.Name department</h3>
+<div class="table-wrapper">
+    <div class="table">
+        <div class="table-head">
+            <div class="my-col-3-3">
+                @Html.DisplayNameFor(ml => seller.Id)
+            </div>
+            <div class="my-col-3-3">
+                @Html.DisplayNameFor(ml => seller.Name)
+            </div>
+            <div class="my-col-3-3">
+                Actions
+            </div>
+        </div>
+        <div class="table-body">
+            @foreach (Seller sel in Model.Sellers)
+            {
+                <div class="table-body-row">
+                    <div class="my-col-3-3">
+                        @Html.DisplayFor(ml => sel.Id)
+                    </div>
+                    <div class="my-col-3-3">
+                        @Html.DisplayFor(ml => sel.Name)
+                    </div>
+                    <div class="my-col-3-3 flex">
+                        <a class="btn btn-sm bg-color-green mg-bottom-5px" asp-action="Edit" asp-route-id="@sel.Id">Edit</a>
+                        <a class="btn btn-sm bg-color-blue mg-bottom-5px" asp-action="Details" asp-route-id="@sel.Id">Details</a>
+                        <a class="btn btn-sm bg-color-red" asp-action="Delete" asp-route-id="@sel.Id">Delete</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<a class="btn btn-md bg-color-blue color-white mg-bottom-5px mg-top-20px" asp-action="Index">Go back</a>

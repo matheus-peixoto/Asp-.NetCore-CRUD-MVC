@@ -1,0 +1,22 @@
+﻿@model Department
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<h2 class="mg-left-10px">@ViewData["Title"]</h2>
+<form class="form" method="post">
+    <div class="form-wrapper">
+        <div class="my-col-10">
+            <label asp-for="Name" class="block"></label>
+            <input asp-for="Name" />
+            <span class="color-red" asp-validation-for="Name"></span>
+        </div>
+        <div class="col-sm-2 offset-sm-10 float-left mg-top-40px">
+            <button class="btn btn-md bg-color-green color-white" type="submit">Create</button>
+        </div>
+    </div>
+</form>
+
+<a class="btn btn-md bg-color-blue color-white mg-bottom-5px mg-top-20px" asp-action="Index">Go back</a>

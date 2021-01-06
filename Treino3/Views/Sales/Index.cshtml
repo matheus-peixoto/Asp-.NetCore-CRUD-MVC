@@ -1,0 +1,97 @@
+﻿@model List<SalesRecord>
+
+@{
+    ViewData["Title"] = "Sales";
+    SalesRecord sale = new SalesRecord();
+    string minDate = Context.Request.Query["minDate"].ToString() != null ? Context.Request.Query["minDate"].ToString() : "";
+    string maxDate = Context.Request.Query["maxDate"].ToString() != null ? Context.Request.Query["maxDate"].ToString() : "";
+}
+
+<div class="first-content">
+    <div class="first-content-head">
+        @ViewData["Title"]
+    </div>
+    <div class="first-content-body">
+        <p>Here a list of sales, you can filter them by the minimum date of the sales and the maximum date of the sales</p>
+    </div>
+</div>
+
+<div class="flex mg-bottom-70px">
+    <div class="my-col-6">
+        <form class="form flex" asp-action="Index" method="get">
+            <div class="form-head">Simple Search</div>
+            <div class="form-body simple-search-form-body">
+                <div>
+                    <label>Min Date</label>
+                    <input type="date" name="minDate" value=@minDate />
+                </div>
+                <div>
+                    <label>Max Date</label>
+                    <input type="date" name="maxDate" value=@maxDate />
+                </div>
+            </div>
+            <button class="btn btn-md bg-color-green color-white" type="submit">Filter</button>
+        </form>
+    </div>
+</div>
+
+@if (!(Model.Count == 0))
+{
+    <div class="table-wrapper">
+        <div class="table">
+            <div class="table-head">
+                <div class="my-col-1">
+                    @Html.DisplayNameFor(ml => sale.Id)
+                </div>
+                <div class="my-col-2">
+                    @Html.DisplayNameFor(ml => sale.Date)
+                </div>
+                <div class="my-col-2">
+                    @Html.DisplayNameFor(ml => sale.Seller.Name)
+                </div>
+                <div class="my-col-2">
+                    @Html.DisplayNameFor(ml => sale.Seller.Department.Name)
+                </div>
+                <div class="my-col-2">
+                    @Html.DisplayNameFor(ml => sale.Amount)
+                </div>
+                <div class="my-col-1">
+                    @Html.DisplayNameFor(ml => sale.Status)
+                </div>
+            </div>
+            <div class="table-body">
+                @foreach (SalesRecord sl in Model)
+                {
+                    <div class="table-body-row">
+                        <div class="my-col-1">
+                            @Html.DisplayFor(ml => sl.Id)
+                        </div>
+                        <div class="my-col-2">
+                            @Html.DisplayFor(ml => sl.Date)
+                        </div>
+                        <div class="my-col-2">
+                            @Html.DisplayFor(ml => sl.Seller.Name)
+                        </div>
+                        <div class="my-col-2">
+                            @Html.DisplayFor(ml => sl.Seller.Department.Name)
+                        </div>
+                        <div class="my-col-2">
+                            @Html.DisplayFor(ml => sl.Amount)
+                        </div>
+                        <div class="my-col-1">
+                            @Html.DisplayFor(ml => sl.Status)
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <p style="font-size: 22px; text-align:center; margin: 25px 0 30px">No sales founded</p>
+}
+
+<div class="pagination"></div>
+<script src="~/js/pagination.js"></script>
+<script>pagination.paginate(@ViewBag.TotalItems, @ViewBag.PageSize, "@ViewBag.ParamName")</script>

@@ -1,0 +1,46 @@
+﻿@model Seller
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+
+<div class="mg-left-10px">
+    <h2>@ViewData["Title"]</h2>
+    <h3 class="mar-top-50px">Are you sure you want to delete this?</h3>
+
+    <dl>
+        <div class="dl-horizontal-data">
+            <dt>@Html.DisplayNameFor(sl => sl.Id)</dt>
+            <dd>@Html.DisplayFor(sl => sl.Id)</dd>
+        </div>
+        <div class="dl-horizontal-data">
+            <dt>@Html.DisplayNameFor(sl => sl.Name)</dt>
+            <dd>@Html.DisplayFor(sl => sl.Name)</dd>
+        </div>
+        <div class="dl-horizontal-data">
+            <dt>@Html.DisplayNameFor(sl => sl.Email)</dt>
+            <dd>@Html.DisplayFor(sl => sl.Email)</dd>
+        </div>
+        <div class="dl-horizontal-data">
+            <dt>@Html.DisplayNameFor(sl => sl.BirthDate)</dt>
+            <dd>@Html.DisplayFor(sl => sl.BirthDate)</dd>
+        </div>
+        <div class="dl-horizontal-data">
+            <dt>@Html.DisplayNameFor(sl => sl.BaseSalary)</dt>
+            <dd>@Html.DisplayFor(sl => sl.BaseSalary)</dd>
+        </div>
+        <div class="dl-horizontal-data">
+            <dt>@Html.DisplayNameFor(sl => sl.Department.Name)</dt>
+            <dd>@Html.DisplayFor(sl => sl.Name)</dd>
+        </div>
+    </dl>
+</div>
+
+<form class="mar-top-15px" asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button class="btn btn-md bg-color-red color-white" type="submit">Delete</button>
+</form>
+
+<a class="btn btn-md bg-color-blue color-white mg-top-15px" asp-action="Index">Go Back</a>

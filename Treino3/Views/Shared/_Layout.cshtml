@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Treino3</title>
+
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Open+Sans:400,400i,700,700i,800,800i&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a asp-controller="Sellers" asp-action="Index">Asp .Net CRUD</a>
+        </div>
+        <div class="links-container">
+            <a asp-controller="Sellers" asp-action="Index">Sellers</a>
+            <a asp-controller="Departments" asp-action="Index">Departments</a>
+            <a asp-controller="Sales" asp-action="Index">Sales</a>
+        </div>
+
+        <div class="hamburguer-menu">
+            <div class="lines">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <div class="close-menu">X</div>
+        </div>
+        <div class="menu">
+            <a asp-controller="Sellers" asp-action="Index">Sellers</a>
+            <a asp-controller="Departments" asp-action="Index">Departments</a>
+            <a asp-controller="Sales" asp-action="Index">Sales</a>
+        </div>
+
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer> &copy; @DateTime.Now.ToString("yyyy") - Asp .Net CRUD </footer>
+
+    @RenderSection("Scripts", required: false)
+
+    <script src="~/js/site.js" type="module"></script>
+    @*<script src="~/js/pagination.js" type="module"></script>*@
+</body>
+
+</html>

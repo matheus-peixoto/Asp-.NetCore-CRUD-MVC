@@ -1,0 +1,45 @@
+﻿@model SellerFormViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2 class="mg-left-10px">@ViewData["Title"]</h2>
+<form class="form" method="post">
+    <div class="form-wrapper">
+        <div class="my-col-10">
+            <label class="block">Name</label>
+            <input asp-for="Seller.Name" />
+            <span class="color-red" asp-validation-for="Seller.Name"></span>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <label class="block" asp-for="Seller.Email"></label>
+            <input asp-for="Seller.Email" />
+            <span class="color-red" asp-validation-for="Seller.Email"></span>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <label class="block" asp-for="Seller.BaseSalary">Base salary</label>
+            <input asp-for="Seller.BaseSalary" />
+            <span class="color-red" asp-validation-for="Seller.BaseSalary"></span>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <label class="block" asp-for="Seller.DepartmentId">Departamento</label>
+            <select asp-for="Seller.DepartmentId" asp-items=@(new SelectList(Model.Departments, "Id", "Name"))>
+            </select>
+        </div>
+        <div class="form-row">
+            <div class="my-col-5 float-left mg-right-60px">
+                <label class="block" asp-for="Seller.BirthDate"></label>
+                <input asp-for="Seller.BirthDate" />
+                <span class="color-red" asp-validation-for="Seller.BirthDate"></span>
+            </div>
+            <button style="margin: 36px 0 0; position:absolute; right: 0px;" class="btn btn-md bg-color-green color-white" type="submit">Create</button>
+        </div>
+     </div>
+</form>
+
+<a class="btn btn-md bg-color-blue color-white mg-bottom-5px mg-top-20px" asp-action="Index">Go back</a>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

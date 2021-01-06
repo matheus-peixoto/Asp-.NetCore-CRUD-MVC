@@ -1,0 +1,91 @@
+﻿@model Seller
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="mg-left-10px">
+    <h2>@ViewData["Title"]</h2>
+    <dl class="my-col-6 mg-">
+        <div class="dl-horizontal-data">
+            <dt>@Html.DisplayNameFor(ml => ml.Id):</dt>
+            <dd>@Html.DisplayFor(ml => ml.Id)</dd>
+        </div>
+        <div class="dl-horizontal-data">
+            <dt>@Html.DisplayNameFor(ml => ml.Name):</dt>
+            <dd>@Html.DisplayFor(ml => ml.Name)</dd>
+        </div>
+        <div class="dl-horizontal-data">
+            <dt>@Html.DisplayNameFor(ml => ml.Email):</dt>
+            <dd>@Html.DisplayFor(ml => ml.Email)</dd>
+        </div>
+        <div class="dl-horizontal-data">
+            <dt>@Html.DisplayNameFor(ml => ml.BirthDate):</dt>
+            <dd>@Html.DisplayFor(ml => ml.BirthDate)</dd>
+        </div>
+        <div class="dl-horizontal-data">
+            <dt>@Html.DisplayNameFor(ml => ml.BaseSalary):</dt>
+            <dd>@Html.DisplayFor(ml => ml.BaseSalary)</dd>
+        </div>
+        <div class="dl-horizontal-data">
+            <dt>@Html.DisplayNameFor(ml => ml.Department.Name):</dt>
+            <dd>@Html.DisplayFor(ml => ml.Department.Name)</dd>
+        </div>
+    </dl>
+</div>
+
+@{
+    SalesRecord sale = new SalesRecord();
+}
+
+<h3 class="mg-left-10px">Sales of @Model.Name</h3>
+<div class="table-wrapper">
+    <div class="table">
+        <div class="table-head">
+            <div class="my-col-1">
+                @Html.DisplayNameFor(ml => sale.Id)
+            </div>
+            <div class="my-col-2">
+                @Html.DisplayNameFor(ml => sale.Date)
+            </div>
+            <div class="my-col-2">
+                @Html.DisplayNameFor(ml => sale.Seller.Name)
+            </div>
+            <div class="my-col-2">
+                @Html.DisplayNameFor(ml => sale.Seller.Department.Name)
+            </div>
+            <div class="my-col-2">
+                @Html.DisplayNameFor(ml => sale.Amount)
+            </div>
+            <div class="my-col-1">
+                @Html.DisplayNameFor(ml => sale.Status)
+            </div>
+        </div>
+        <div class="table-body">
+            @foreach (SalesRecord sl in Model.SalesRecords)
+            {
+                <div class="table-body-row">
+                    <div class="my-col-1">
+                        @Html.DisplayFor(ml => sl.Id)
+                    </div>
+                    <div class="my-col-2">
+                        @Html.DisplayFor(ml => sl.Date)
+                    </div>
+                    <div class="my-col-2">
+                        @Html.DisplayFor(ml => sl.Seller.Name)
+                    </div>
+                    <div class="my-col-2">
+                        @Html.DisplayFor(ml => sl.Seller.Department.Name)
+                    </div>
+                    <div class="my-col-2">
+                        @Html.DisplayFor(ml => sl.Amount)
+                    </div>
+                    <div class="my-col-1">
+                        @Html.DisplayFor(ml => sl.Status)
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<a  class="mg-left-10px btn btn-md bg-color-blue color-white " asp-action="Index">Go Back</a>
