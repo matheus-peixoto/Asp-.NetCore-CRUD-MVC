@@ -43,7 +43,9 @@ namespace Treino3.Controllers
             }
 
             ViewBag.ParamName = "page";
-            ViewBag.PageSize = _configuration.GetValue<int>("Pagination:PageSize");
+            ViewBag.ItemsPerPage = _configuration.GetValue<int>("Pagination:ItemsPerPage");
+            ViewBag.MaxLinksPerPage = _configuration.GetValue<int>("Pagination:MaxLinksPerPage");
+
             return View(departments);
         }
 

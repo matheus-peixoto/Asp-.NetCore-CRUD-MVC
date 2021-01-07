@@ -68,13 +68,13 @@ namespace Treino3.Repositories
 
         public async Task<List<Seller>> GetAllPaginatedAsync(int page = 1)
         {
-            int pageSize = _configuration.GetValue<int>("Pagination:PageSize");
+            int pageSize = _configuration.GetValue<int>("Pagination:ItemsPerPage");
             return await _context.Seller.Include(sl => sl.Department).OrderBy(sl => sl.Id).Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
         }
 
         public async Task<List<Seller>> GetAllPaginatedWithFilterAsync(Expression<Func<Seller, bool>> filter, int page = 1)
         {
-            int pageSize = _configuration.GetValue<int>("Pagination:PageSize");
+            int pageSize = _configuration.GetValue<int>("Pagination:ItemsPerPage");
             return await _context.Seller.Include(sl => sl.Department).Where(filter).OrderBy(sl => sl.Id).Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
         }
 

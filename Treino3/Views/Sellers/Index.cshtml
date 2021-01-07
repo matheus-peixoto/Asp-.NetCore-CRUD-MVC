@@ -67,4 +67,4 @@
 
 <div class="pagination"></div>
 <script src="~/js/pagination.js"></script>
-<script>pagination.paginate(@ViewBag.TotalItems, @ViewBag.PageSize, "@ViewBag.ParamName")</script>
+<script>pagination.paginate(@ViewBag.TotalItems, @ViewBag.ItemsPerPage, @ViewBag.MaxLinksPerPage,"@ViewBag.ParamName")</script>

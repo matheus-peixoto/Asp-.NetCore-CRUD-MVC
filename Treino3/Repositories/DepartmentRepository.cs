@@ -32,8 +32,8 @@ namespace Treino3.Repositories
 
         public async Task InsertAsync(Department tObj)
         {
-            _context.Add(tObj); // Essa operação é feita somente em memória
-            await _context.SaveChangesAsync(); // Essa é a que de fato vai acessar o banco de dados
+            _context.Add(tObj);
+            await _context.SaveChangesAsync();
         }
         
         public async Task DeleteAsync(int id)
@@ -69,13 +69,13 @@ namespace Treino3.Repositories
 
         public async Task<List<Department>> GetAllPaginatedAsync(int page = 1)
         {
-            int pageSize = _configuration.GetValue<int>("Pagination:PageSize");
+            int pageSize = _configuration.GetValue<int>("Pagination:ItemsPerPage");
             return await _context.Department.OrderBy(dep => dep.Id).Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
         }
 
         public async Task<List<Department>> GetAllPaginatedWithFilterAsync(Expression<Func<Department, bool>> filter, int page = 1)
         {
-            int pageSize = _configuration.GetValue<int>("Pagination:PageSize");
+            int pageSize = _configuration.GetValue<int>("Pagination:ItemsPerPage");
             return await _context.Department.Where(filter).OrderBy(dep => dep.Id).Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
         }
 

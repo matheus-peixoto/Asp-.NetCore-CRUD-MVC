@@ -33,7 +33,8 @@ namespace Treino3.Controllers
             List<SalesRecord> sales = await _salesServices.GetAllPaginatedByDateAsync(minDate, maxDate, page ?? 1);
 
             ViewBag.ParamName = "page";
-            ViewBag.PageSize = _configuration.GetValue<int>("Pagination:PageSize");
+            ViewBag.ItemsPerPage = _configuration.GetValue<int>("Pagination:ItemsPerPage");
+            ViewBag.MaxLinksPerPage = _configuration.GetValue<int>("Pagination:MaxLinksPerPage");
             ViewBag.TotalItems = await _salesServices.TotalItemsByDateAsync(minDate, maxDate);
             return View(sales);
         }

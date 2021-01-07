@@ -37,13 +37,13 @@ namespace Treino3.Repositories
 
         public async Task<List<SalesRecord>> GetAllPaginatedAsync(int page = 1)
         {
-            int pageSize = _configuration.GetValue<int>("Pagination:PageSize");
+            int pageSize = _configuration.GetValue<int>("Pagination:ItemsPerPage");
             return await _context.SalesRecord.OrderBy(dep => dep.Id).Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
         }
 
         public async Task<List<SalesRecord>> GetAllPaginatedWithFilterAsync(Expression<Func<SalesRecord, bool>> filter, int page = 1)
         {
-            int pageSize = _configuration.GetValue<int>("Pagination:PageSize");
+            int pageSize = _configuration.GetValue<int>("Pagination:ItemsPerPage");
             return await _context.SalesRecord.Where(filter).OrderBy(dep => dep.Id).Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
         }
 
@@ -57,7 +57,7 @@ namespace Treino3.Repositories
             if (maxDate.HasValue)
                 querie = querie.Where(sale => sale.Date <= maxDate);
 
-            int pageSize = _configuration.GetValue<int>("Pagination:PageSize");
+            int pageSize = _configuration.GetValue<int>("Pagination:ItemsPerPage");
             return await querie.OrderBy(sale => sale.Id).Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
         }
 
