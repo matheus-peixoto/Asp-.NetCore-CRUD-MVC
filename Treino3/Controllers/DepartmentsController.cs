@@ -15,11 +15,11 @@ namespace Treino3.Controllers
 {
     public class DepartmentsController : Controller
     {
-        private readonly IDepartmentRepository _departmentServices;
+        private readonly IDepartmentRepository _departmentRepository;
         private readonly IConfiguration _configuration;
-        public DepartmentsController(IDepartmentRepository departmentServices, IConfiguration configuration)
+        public DepartmentsController(IDepartmentRepository departmentRepository, IConfiguration configuration)
         {
-            _departmentServices = departmentServices;
+            _departmentRepository = departmentRepository;
             _configuration = configuration;
         }
 
@@ -29,8 +29,8 @@ namespace Treino3.Controllers
             if (!string.IsNullOrEmpty(search))
             {
                 Expression<Func<Department, bool>> filter = s => s.Name.Trim().ToLower().Contains(search.Trim().ToLower());
-                ViewBag.TotalItems = await _departmentServices.TotalItemsWithFilterAsync(filter);
-                departments = await _departmentServices.GetAllPaginatedWithFilterAsync
+                ViewBag.TotalItems = await _departmentRepository.TotalItemsWithFilterAsync(filter);
+                departments = await _departmentRepository.GetAllPaginatedWithFilterAsync
                 (
                     filter: s => s.Name.Trim().ToLower().Contains(search.Trim().ToLower()),
                     page: page ?? 1
@@ -38,8 +38,8 @@ namespace Treino3.Controllers
             }
             else
             {
-                ViewBag.TotalItems = await _departmentServices.TotalItemsAsync();
-                departments = await _departmentServices.GetAllPaginatedAsync(page ?? 1);
+                ViewBag.TotalItems = await _departmentRepository.TotalItemsAsync();
+                departments = await _departmentRepository.GetAllPaginatedAsync(page ?? 1);
             }
 
             ViewBag.ParamName = "page";
@@ -59,7 +59,7 @@ namespace Treino3.Controllers
         {
             if(ModelState.IsValid)
             {
-                await _departmentServices.InsertAsync(department);
+                await _departmentRepository.InsertAsync(department);
                 return RedirectToAction(nameof(Index));
             }
 
@@ -71,7 +71,7 @@ namespace Treino3.Controllers
             if (id == null)
                 return RedirectToAction(nameof(Error), new { msg = "Id not provided" });
 
-            Department department = await _departmentServices.FindByIdAsync(id.Value);
+            Department department = await _departmentRepository.FindByIdAsync(id.Value);
             if (department == null)
                 return RedirectToAction(nameof(Error), new { msg = "Id not founded" });
 
@@ -83,7 +83,7 @@ namespace Treino3.Controllers
         {
             try
             {
-                await _departmentServices.DeleteAsync(id);
+                await _departmentRepository.DeleteAsync(id);
                 return RedirectToAction(nameof(Index));
             }
             catch(IntegrityException e)
@@ -97,7 +97,7 @@ namespace Treino3.Controllers
             if (id == null)
                 return RedirectToAction(nameof(Error), new { msg = "Id not provided" });
 
-            Department department = await _departmentServices.FindByIdAsync(id.Value);
+            Department department = await _departmentRepository.FindByIdAsync(id.Value);
             if (department == null)
                 return RedirectToAction(nameof(Error), new { msg = "Id not founded" });
 
@@ -109,7 +109,7 @@ namespace Treino3.Controllers
         {
             try
             {
-                await _departmentServices.UpdateAsync(department);
+                await _departmentRepository.UpdateAsync(department);
                 return RedirectToAction(nameof(Index));
             }
             catch(ApplicationException e)
@@ -123,7 +123,7 @@ namespace Treino3.Controllers
             if (id == null)
                 return RedirectToAction(nameof(Error), new { msg = "Id not provided" });
 
-            Department department = await _departmentServices.FindByIdAsync(id.Value);
+            Department department = await _departmentRepository.FindByIdAsync(id.Value);
             if(department == null)
                 return RedirectToAction(nameof(Error), new { msg = "Id not founded" });
 
