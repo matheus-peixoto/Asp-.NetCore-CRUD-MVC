@@ -20,10 +20,10 @@ namespace Treino3.Controllers
         private readonly IDepartmentRepository _departmentRepository;
         private readonly IConfiguration _configuration;
 
-        public SellersController(ISellerRepository sellerServices, IDepartmentRepository departmentServices, IConfiguration configuration)
+        public SellersController(ISellerRepository sellerRepository, IDepartmentRepository departmentRepository, IConfiguration configuration)
         {
-            _sellerRepository = sellerServices;
-            _departmentRepository = departmentServices;
+            _sellerRepository = sellerRepository;
+            _departmentRepository = departmentRepository;
             _configuration = configuration;
         }
 
